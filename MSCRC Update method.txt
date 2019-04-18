@@ -1,0 +1,40 @@
+By go through this https://www.gamekiller.net/forums/maplestory-sea-tutorials-guides.864/create-thread, we manage to get the CRC1 and CRC2 address. Within the 2 addresses we found, we manage to get CRC1Reg and CRC2Reg value easily. Problems come when we want to update CRC1CHANGE, CRC2CHANGE, and CRC1END this 3 since CRC1START always the same value.
+ 
+Before you start, in Cheat Engine, go Edit-Settings-Debugger Options and change Debugger methos to Use VEH Debugger. And, keep in mind that, i don't know what going on or how to fix problems. Always use SE's MSCRC Bypass to be "more" safe than this. And this guide i use v185.1 values as example.
+ 
+CRC1
+In Memory view, right click below section (anywhere) > choose "Goto address" > fill it with 00401000 > OK > Right click On the 01 position of 00401000 > Data Breakpoints > Find out what accesses to this address > login your game until in map, you should straight hit the breakpoints and the value of the address will be our CRC1. Click the stop button to prevent crash once you hit the breakpoints. In this case, you get 03ACA4F3 add al,[ecx] and the CRC1 address will be 03ACA4F3
+ 
+CRC2
+In Memory view, right click below section (anywhere) > choose "Goto address" > fill it with the CRC1 address that we found > OK > Right click On the 00 position of CRC1 address > Data Breakpoints > Find out what accesses to this address > login your game until in map, you should straight hit the breakpoints and the value of the address will be our CRC2. Click the stop button to prevent crash once you hit the breakpoints. In this case, you get 0382ACDB mov ebx,[ebx] and the CRC2 address will be 0382ACDB
+ 
+CRC1Reg
+03ACA4F3 add al,[ecx] < value inside the bracket. So CRC1Reg will be ecx
+ 
+CRC2Reg
+0382ACDB mov ebx,[ebx] < value inside the bracket. So CRC2Reg will be ebx
+ 
+CRC1CHANGE
+In Memory view, right click top section (anywhere) > choose "Go to address" > fill it with the CRC1 address that we found > OK > look at the Address column and we get
+36CA4F3
+36CA4F5
+36CA4F8
+36CA4FE
+36CA503
+... and blah blah blah. Here you need to count in Hexadecimal. Meaning in 0123456789ABCDEF. First, we always start with adding 5 to it. So, 36CA4F3 + 5 = 36CA4F8. If this is not the correct value, we go to next line which is 36CA4FE. From 36CA4F3 to 36CA4FE will be 11. Or 36CA4F3 to 36CA503 = 16. Meaning you need to try 2 combinations with CRC2CHANGE until you found the both correct value :) That's what i know and is already beyond my limit.
+ 
+CRC2CHANGE
+In Memory view, right click top section (anywhere) > choose "Go to address" > fill it with the CRC2 address that we found > OK > look at the Address column and we get
+342ACDB
+342ACDD
+342ACDF
+342ACE0
+342ACE5
+342ACEA
+... and blah blah blah. Here you need to count in Hexadecimal. Meaning in 0123456789ABCDEF. First, we always start with adding 5 to it. So, 342ACDB + 5 = 342ACE0. If this is not the correct value, we go to next line which is 342ACE5. From 342ACDB to 342ACE5 will be 10. Or 342ACDB to 342ACEA = 15. Meaning you need to try 2 combinations with CRC1CHANGE until you found the both correct value :) That's what i know and is already beyond my limit.
+ 
+CRC1START
+Thanks god for that it always the same so we leave it 00401000 unchanged.
+ 
+CRC1END
+Last few patch i try to create an AOB for it and it never same with SE after each patches. btw, it work but i don't know how dangerous is that :) 86 9B ? ? ? ? 93 19 02
