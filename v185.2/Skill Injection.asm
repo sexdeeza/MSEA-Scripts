@@ -1,10 +1,16 @@
+// Kanna
+// Kanna Stage 3 Basic Attack [42001006] - WORKING (GREATLY INCREASES DPS)
+// Tengu Strike Stage 1 [42111000] - WORKING (NO MANA COST)
+// Tengu Strike Stage 2 [42111011] - WORKING (NO MANA COST)
+// Spirit Corral [42111001] - WORKING (NO MANA COST)
+
 [ENABLE]
 alloc(skill_id_hook,128)
 alloc(timer,4)
 label(skill_id_return)
 label(normal)
-define(skill_id,#400040006) //Change #00000000 to your skillID 400010028 400011028
-define(skill_delay,#30) //Change delay
+define(skill_id,#42001006) //Change #00000000 to your skillID 400010028 400011028
+define(skill_delay,#0) //Change delay
 
 timer:
 dd 00
