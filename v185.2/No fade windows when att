@@ -1,0 +1,7 @@
+[ENABLE]
+02679DAE: // B8 ? 00 00 00 8B 4D ? 64 ? ? ? ? ? ? 59 5F 5E 8B E5 5D C3 C7 05
+mov eax,00000000
+
+[DISABLE]
+02679DAE:
+mov eax,00000001
