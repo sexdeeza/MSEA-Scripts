@@ -1,1 +1,6 @@
+/*
+  Search for String "PtInRect" (address = 0F66A261)
+  4 byte scan it
+*/
+
 PtInRect = 0F635948 // Go to address PtInRect and then 4 byte scan it
