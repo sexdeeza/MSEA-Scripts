@@ -4,3 +4,11 @@
 */
 
 PtInRect = 0F635948 // Go to address PtInRect and then 4 byte scan it
+
+Guide to find itemX & Y
+https://ccplz.net/threads/need-help-understanding-item-hook-x-y-asm.47434/
+
+https://ccplz.net/threads/ptinrect-itemhook.58656/
+
+API Hooking / Detour
+https://www.codeproject.com/Articles/30140/API-Hooking-with-MS-Detours
