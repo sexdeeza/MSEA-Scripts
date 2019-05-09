@@ -6,7 +6,6 @@
 alloc(hook,128)
 alloc(PressKey,128)
 alloc(timer,4)
-label(update)
 label(return)
 define(CTRL,001D0000)
 define(SHIFT,002A0000)
@@ -49,10 +48,6 @@ push edx
 push 00
 call 028F0530
 ret
-
-update:
-push 02F0A58B // Original opcode
-jmp return
 
 02816685: // CMob::Update (only calls when in maps with mobs, useful if you get stuck in town while map rushing) //start!
 jmp hook //jump to hook
