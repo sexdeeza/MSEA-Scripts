@@ -1,0 +1,41 @@
+//Auto Key V2
+//Msea v181.1
+// v2 won't crash for Win7 64bit OS. Uses Auto Attack delay system
+
+[Enable]
+alloc(hook,128)
+label(return)
+define(CTRL,001D0000)
+define(SHIFT,002A0000)
+define(INSERT,01520000)
+define(DEL,01530000)
+define(HOME,01470000)
+define(END,014F0000)
+define(PAGEUP,01490000)
+define(PAGEDOWN,01510000)
+define(ALT,00380000)
+define(Z,002C0000)
+define(E,00120000)
+define(Autokey, CTRL)
+define(delay, #1)
+
+hook:
+pushad //pushes in order of EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI
+mov edx,Autokey // change key here
+push edx
+push 00
+call 028F0530
+popad //restores from pushad
+jmp return //jump to return
+
+02816685: // CMob::Update (only calls when in maps with mobs, useful if you get stuck in town while map rushing) //start!
+jmp hook //jump to hook
+return:
+
+[Disable]
+02816685:
+push 02F0A58B
+db 64 A1 00 00 00 00
+
+dealloc(hook)
+dealloc(PressKey)
