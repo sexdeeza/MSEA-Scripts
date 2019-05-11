@@ -1,3 +1,6 @@
+// works well only with jumping mob / flying mob
+// https://www.gamekiller.net/threads/an-medium-guide-of-maplestory-fma-and-non-fma.3253450/
+
 //script updated by BreadKiller
 [ENABLE]
 alloc(hook,128)
