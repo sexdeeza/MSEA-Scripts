@@ -1,0 +1,24 @@
+[ENABLE]
+alloc(nodelay,128)
+alloc(counter,4)
+alloc(normal,64)
+
+02480695:
+jmp nodelay
+nop
+
+nodelay:
+cmp [counter],5//越高越多次
+je normal
+inc [counter]
+jmp 0248069B
+
+normal:
+mov [counter],0
+mov [edi+00000864],ebx
+jmp 0248069B
+
+
+[DISABLE]
+02480695: //89 9F ? ? ? ? FF 50 ? C7 87 ? ? ? ? 00 00 00 00 C7 87 ? ? ? ? 00 00 00 00 C7 87 ? ? ? ? 00 00 00 00 E8 ? ? ? ? 89 87 ? ? ? ? 85 F6 74 ? 8B 46 ? EB ?
+mov [edi+00000864],ebx
