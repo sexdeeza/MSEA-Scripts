@@ -1,9 +1,11 @@
-/*
-  Search for String "PtInRect" (address = 0F66A261)
-  4 byte scan it
+/* Find PtInRect
+  Search for String "PtInRect" (static address)
 */
 
-PtInRect = 0F635948 // Go to address PtInRect and then 4 byte scan it
+/* Find ItemHookCMP
+  Go to Address "PtInRect", 4 bytes scan address 
+*/
+
 
 Guide to find itemX & Y
 https://ccplz.net/threads/need-help-understanding-item-hook-x-y-asm.47434/
