@@ -1,0 +1,30 @@
+//Mob Control
+//MSEA 185.2
+
+// 01 Normal Mobs
+// 02 Jump mob
+// 03 Fly Mobs
+// 04 Stationary Mobs
+// 05 Mob Walk Right
+// 06-07-08 Lemmings
+// 09 and above crash MapleStory with "error code: -2147467259 (Unspecified error)"
+
+define(action,04) // change action here
+
+[ENABLE]
+alloc(MobControl,128)
+
+MobControl:
+mov [edi+00000510],action
+mov eax,[edi+00000510]
+jmp 0287DBF7+6
+
+0287DBF7:
+jmp MobControl
+db 90
+
+[DISABLE]
+0287DBF7: // CVecCtrlMob::WorkUpdateActive: E9 ? ? ? ? 8B ? ? ? 00 00 83 ? ? 0F ? ? ? ? ? FF [Address below]
+mov eax,[edi+00000510]
+
+dealloc(MobControl)
