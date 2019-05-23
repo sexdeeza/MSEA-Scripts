@@ -1,0 +1,9 @@
+//Instant Drop
+//MSEA 186.1
+[ENABLE]
+01217E9F:
+db F2 0F 5E
+
+[DISABLE]
+01217E9F: // F2 ? ? ? ? ? ? ? 3B ? 7F [2nd result]
+db F2 0F 59
