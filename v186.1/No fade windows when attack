@@ -1,0 +1,7 @@
+[ENABLE]
+026D8F2E: // B8 ? 00 00 00 8B 4D ? 64 ? ? ? ? ? ? 59 5F 5E 8B E5 5D C3 C7 05
+mov eax,00000000
+
+[DISABLE]
+026D8F2E:
+mov eax,00000001
