@@ -1,4 +1,4 @@
-//7E 35 83 F8 06 7D 30 8B 41 04 2B C2 3D 6A FF FF FF 7E 24 3D 96 00 00 00 7D 1D 8B 41 08 3B 41 0C 7C 07
+//7E ? 83 F8 ? 7D ? 8B 41 ? 2B C2 3D ? ? ? ? 7E ? 3D ? ? ? ? 7D ? 8B 41 ? 3B 41 ? 7C
 define(UnlimitedAttack, 026F7CD1) // 1st jle from int CAntiRepeat::TryRepeat(long,long)
 [Enable]
 UnlimitedAttack:
