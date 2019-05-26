@@ -18,7 +18,7 @@ add eax,#100 //Adjust X
 mov [esp+2C],eax //nMoveEndingX
 
 //Vac to Char Y
-mov edi,[03646E6C] //CUserLocal: 8B 3D ? ? ? ? 8B CF F3
+mov edi,[0370AC3C] //CUserLocal: 8B 3D ? ? ? ? 8B CF F3
 mov eax,[esi+15888+4] //Character X Location Offset+4: 8d 86 ? ? ? ? 8b cf 50 e8 ? ? ? ? 5f 5e 5b
 add eax,#0 //Adjust Y
 mov [esp+30],eax //nMoveEndingY
