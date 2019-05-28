@@ -1,0 +1,14 @@
+[ENABLE]
+alloc(conthit,64)
+
+conthit:
+mov eax,#8000 //timer in base 16
+jmp 02A13630+6
+
+02A13630:
+jmp conthit
+nop
+
+[DISABLE]
+02A13630: // 55 8B EC 8B ? ? 89 ? ? ? ? ? 5D C2 ? ? 8B ? ? ? ? ? C3 CC CC CC CC [last 12nd result, mov before ret]
+mov eax,[ecx+00008F48]
