@@ -1,0 +1,42 @@
+/*
+define(CTRL,001D0000)
+define(SHIFT,002A0000)
+define(INSERT,01520000)
+define(DEL,01530000)
+define(HOME,01470000)
+define(END,014F0000)
+define(PAGEUP,01490000)
+define(PAGEDOWN,01510000)
+define(ALT,00380000)
+define(Z,002C0000)
+define(E,00120000)
+*/
+
+[Enable]
+alloc(hook,128)
+label(return)
+
+hook:
+pushad
+// mobCount < 4 stop
+/*mov eax,[03742AC8]
+mov eax,[eax+14]
+cmp [eax+19218],4  //怪物數量小於等於停止攻擊
+jle return*/
+mov edx,001D0000        // Ctrl
+push edx
+push 00                 // 00 - normal , 01 - combo
+call 029528E0 // 55 8B EC 8B 0D ?? ?? ?? ?? 85 C9 74 ?? 83 C1 ?? [first result]
+popad
+jmp return
+
+0129B680:
+jmp hook
+return:
+
+[Disable]
+0129B680: // E8 ? ? ? ? 8B 0D ? ? ? ? E8 ? ? ? ? 8B CF E8 ? ? ? ? 83 ? ? ? ? ? ? 74 ? FF 15 ? ? ? ? 2B ? ? ? ? ? 3D
+call 01697810
+
+dealloc(hook)
+dealloc(PressKey)
