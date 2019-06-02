@@ -1,0 +1,8 @@
+//TwMS V216.1 CRC 走怪掉落
+[Enable]
+0286D0FA:
+jmp 0286D100 // next address
+
+[Disable]
+0286D0FA: // 0F 84 ? ? ? ? 83 F8 ? 0F 84 ? ? ? ? 83 F8 ? 0F 85 ? ? ? ? 8B CF E8 ? ? ? ? 8B C8 E8
+je 0287114A
