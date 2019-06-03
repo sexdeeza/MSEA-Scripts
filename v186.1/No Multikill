@@ -1,0 +1,9 @@
+//No Multi Kill
+//MSEA 185.1
+[ENABLE]
+0324774C:
+ret
+
+[DISABLE]
+0324774C: // String search Effect/BasicEff.img/MultiKill/ [First]
+db 45
