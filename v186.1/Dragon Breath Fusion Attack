@@ -1,7 +1,0 @@
-[enable]
-011EAA6B:
-db 0F 84
-
-[disable]
-011EAA6B: //0f 85 ? ? ? ? ff 15 ? ? ? ? 8b c3
-db 0F 85
