@@ -1,0 +1,11 @@
+//TwMS v217.1 CRC 黑暗無敵
+//Auther:Onion
+//Source:https://bingfeng.tw/forum.php?mod=viewthread&tid=511874&highlight=%E9%BB%91%E6%9A%97%E7%84%A1%E6%95%B5
+//效果: 撞怪後完全無敵防魔防物理防陷阱 (換圖會再撞到一次)
+[Enable]
+02503CD8:
+DB 0F 84
+
+[Disable]
+02503CD8: // 0F 85 ? ? ? ? 8B CF E8 ? ? ? ? 81 C7 ? ? ? ? 8B CF 89 7D ? E8 ? ? ? ? 85
+DB 0F 85
