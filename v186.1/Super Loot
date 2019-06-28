@@ -1,0 +1,15 @@
+//TwMS v217.1 CRC 超級撿物
+[ENABLE]
+alloc(Supercapture,80)
+Supercapture:
+mov [esi+0000226C],00
+jmp 029D2B5F
+
+029D2B59:
+jmp Supercapture
+nop
+
+[DISABLE]
+029D2B59: // 89 86 ? ? ? ? E8 ? ? ? ? 89 86 ? ? ? ? 5E 5D C2 ? ? CC [last 3rd]
+mov [esi+0000226C],eax
+dealloc(Supercapture)
