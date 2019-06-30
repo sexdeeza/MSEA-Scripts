@@ -1,0 +1,24 @@
+// TwMS v217.1 CRC 全職全圖打不物落腳下
+[ENABLE]
+alloc(qpgjzctz,128)
+
+qpgjzctz:
+mov ecx,[0370AC3C] // CUserLocal: 8B 3D ? ? ? ? 8B CF F3
+add ecx,04
+lea eax,[ebp-000000C0]
+push eax
+call 0251F570 // 55 8B EC 56 57 8D B9 ? ? ? ? 8D 4F ? E8 ? ? ? ? 8B 75 ? 8B CF 89 06 E8 ? ? ? ? 89 46 ? 8B C6 5F 5E 5D C2 [last 2nd]
+push eax
+lea ecx,[ebx+000005E0] // Original opcode 2 line below
+call 00EE3000 // 55 8B EC 83 EC ? 8B 45 ? 53 56 8B 35 ? ? ? ? 8B D9 8B 00 46 89 45 ? 89 45 ? B8 ? ? ? ? F7 EE 89 35
+jmp 0172FD43 // 2nd lea below
+
+0172FD31:
+jmp qpgjzctz
+db 90
+
+[DISABLE]
+0172FD31: // 8D 83 ? ? ? ? 50 8D 8B ? ? ? ? E8 ? ? ? ? 8D 45 ? 50 FF 15 ? ? ? ? 8D 45 ? 68
+db 8D 83 C8 05 00 00
+
+dealloc(qpgjzctz)
