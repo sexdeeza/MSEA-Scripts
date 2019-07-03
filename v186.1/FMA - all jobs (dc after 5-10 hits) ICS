@@ -1,0 +1,45 @@
+//TwMS v217.2 ICS 全職全圖打
+[ENABLE]
+alloc(VariantInit_H,1024)
+alloc(qpgjzctz_SW,4)
+alloc(qpgjzctz,128)
+registersymbol(qpgjzctz_SW)
+label(qpgjzctz_)
+
+qpgjzctz_SW:
+dd 1
+
+VariantInit_H:
+cmp [esp],0172FD4D // 8D 45 ? 68 ? ? ? ? 50 E8 ? ? ? ? 83 C4 ? 85 C0 79 ? 50 E8 ? ? ? ? 8B B3 ? ? ? ? C7 45 ? ? ? ? ? 85 F6 75 ? 68 ? ? ? ? E8 ? ? ? ? 0F 10 45 ? [4th]
+je qpgjzctz_
+db 90
+jmp VariantInit
+
+qpgjzctz_:
+cmp [qpgjzctz_SW],0
+je VariantInit
+mov [esp],qpgjzctz
+jmp VariantInit
+
+qpgjzctz:
+mov ecx,[0370AC3C] // CUserLocal: 8B 3D ? ? ? ? 8B CF F3
+add ecx,04
+lea eax,[ebp-000000C0]
+push eax
+call 0251F570 // 55 8B EC 56 57 8D B9 ? ? ? ? 8D 4F ? E8 ? ? ? ? 8B 75 ? 8B CF 89 06 E8 ? ? ? ? 89 46 ? 8B C6 5F 5E 5D C2 [last 2nd]
+push eax
+lea ecx,[ebx+000005E0] // 2nd lea above
+call 00EE3000 // 55 8B EC 83 EC ? 8B 45 ? 53 56 8B 35 ? ? ? ? 8B D9 8B 00 46 89 45 ? 89 45 ? B8 ? ? ? ? F7 EE 89 35
+jmp 0172FD4D // same with cmp above
+
+03078438:
+DD VariantInit_H
+
+[DISABLE]
+03078438: // above cmp find dword ptr [address] 
+dd VariantInit
+
+dealloc(VariantInit_H)
+dealloc(qpgjzctz_SW)
+dealloc(qpgjzctz)
+unregistersymbol(qpgjzctz_SW)
