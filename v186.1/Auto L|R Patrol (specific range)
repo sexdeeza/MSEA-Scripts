@@ -1,0 +1,114 @@
+//TwMS v217.1 ICS 座標左右走(指定範圍)
+//Author: Onion
+//修改:   PearDelicious, Thx to MS88088
+[Enable]
+RegisterSymbol(SwitchLR)
+RegisterSymbol(X)
+RegisterSymbol(RBound)
+RegisterSymbol(LBound)
+Alloc(AutoLRICS,512)
+Alloc(MyLR,4)
+Alloc(X,4)        //初始位置
+Alloc(Step,4)
+Alloc(LBound,4)        //左方距離
+Alloc(RBound,4)        //右方距離
+Alloc(SwitchLR,4)
+Label(InitFun)
+Label(AutoLR)
+Label(GetWall)
+Label(GetChrX)
+Label(GoRight)
+Label(GoLeft)
+
+//-----------------------------------------------
+LBound:
+DD 1A       //距離 16進制 1A=26
+RBound:
+DD 12C     //距離 16進制 12C=300
+X:
+ReadMem([0370AC3C]+15888, 4)
+//-----------------------------------------------
+
+SwitchLR:
+DD 01
+Step:
+DD 0
+MyLR:
+DD 1 //開啟後先向右走
+
+AutoLRICS:
+Cmp [Esp],00CB5FC7 // 3B C6 0F 85 ? ? ? ? 8B 0D ? ? ? ? E8 ? ? ? ? 85 C0 0F 84 ? ? ? ? 83 3D ? ? ? ? ? 0F 85 ? ? ? ? 8B ? 8B
+Jne GetFocus
+Mov Eax,[Step]
+Cmp Eax,0
+je  InitFun
+Mov Eax,[SwitchLR]
+Cmp Eax,01
+jne GetFocus
+Mov [Esp],AutoLR
+Jmp GetFocus
+
+InitFun:
+Mov [Step],1
+Mov Eax,[X]
+Sub Eax,[LBound]
+Mov [LBound],Eax
+Mov Eax,[X]
+Add Eax,[RBound]
+Mov [RBound],Eax
+Ret
+
+AutoLR:
+Call GetWall
+Mov  [ebp-1C],Eax
+Xor  Ecx,Ecx
+Xor  Eax,Eax
+Cmp  [ebp-1C],Eax
+Jmp  00CB5ED1 // opcode after cmp
+
+GetWall:
+call GetChrX
+Mov  Ecx,[LBound]
+Sub  Eax,Ecx
+Cmp  Eax,0
+Jle  GoRight
+call GetChrX
+Mov  Ecx,[RBound]
+sub  Ecx,Eax
+cmp  Ecx,0
+Jle  GoLeft
+Mov  Eax,[MyLR]
+Ret
+
+GetChrX:
+Mov Eax,[0370AC3C]
+Mov Eax,[Eax+15888]
+ret
+
+GoRight:
+Mov [MyLR],1
+Mov Eax,1
+Ret
+
+GoLeft:
+Mov [MyLR],FFFFFFFF
+Mov Eax,FFFFFFFF
+Ret
+
+03752CB8:
+DD AutoLRICS
+
+[Disable]
+03752CB8:
+DD GetFocus
+
+DeAlloc(LBound)
+DeAlloc(RBound)
+DeAlloc(Step)
+DeAlloc(X)
+DeAlloc(MyLR)
+DeAlloc(AutoLRICS)
+UnRegisterSymbol(SwitchLR)
+UnRegisterSymbol(X)
+UnRegisterSymbol(RBound)
+UnRegisterSymbol(LBound)
