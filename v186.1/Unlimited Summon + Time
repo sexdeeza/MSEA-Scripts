@@ -1,0 +1,7 @@
+[Enable]
+01AA7C80: // follow call E8 ? ? ? ? 6A 00 8D 4D E8 E8 ? ? ? ? 33 DB
+db C2 04 00
+
+[Disable]
+01AA7C80:
+db 55 8B EC
