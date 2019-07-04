@@ -1,5 +1,4 @@
 //Remove Lvl Up Dmg
-//MSEA 185.2
 [ENABLE]
 02AA10B6: // Removes Level Up Damage
 db EB
