@@ -1,6 +1,7 @@
 //TwMS v217.1 ICS 座標左右走(指定範圍)
 //Author: Onion
 //修改:   PearDelicious, Thx to MS88088
+// Required: Send any key to keep this script running, else it keeps walking to same direction
 [Enable]
 RegisterSymbol(SwitchLR)
 RegisterSymbol(X)
