@@ -1,0 +1,33 @@
+[Enable]
+Alloc(Hook,128)
+Label(Return)
+Label(Original)
+Label(Exit)
+
+01731770:
+jmp Hook
+Return:
+
+Hook:
+pushad
+mov edi,ecx
+call 01726EE0 // e8 ? ? ? ? 8b ce 89 45 ? e8 ? ? ? ? 8b 57 [Follow Call]
+// Invisible mob. ??? address does matter else dc / crash
+cmp eax,0098967F // GMS using this address for patches, keep it static
+je Exit
+mov ecx,edi
+call 0177BF80 // E8 ? ? ? ? 8B CF E8 ? ? ? ? 85 C0 0F 85 ? ? ? ? 8B 0D ? ? ? ? 6A ? 50 50 50 50 68 [follow call]
+
+Exit:
+popad
+Original:
+push ebp
+mov ebp,esp
+push -01
+jmp Return
+
+[Disable]
+01731770: // 74 ? E8 ? ? ? ? 85 C0 75 ? 83 ? ? ? ? ? 00 74 ? 8D ? ? ? ? ? E8 ? ? ? ? 83 ? ? ? ? ? 00 8B 35 ? ? ? ? 74 ? FF D6 2B ? ? ? ? ? 3D ? ? ? ? 7C ? C7 ? ? ? ? ? 00 00 00 00 FF D6 [function start]
+push ebp
+mov ebp,esp
+push -01
