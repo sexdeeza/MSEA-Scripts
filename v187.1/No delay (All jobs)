@@ -1,0 +1,30 @@
+// TwMS v217.1 全職業無延遲 [CRC]
+//Author:yutsaihsieh
+
+[ENABLE]
+alloc(nodelay,128)
+alloc(counter,4)
+alloc(normal,64)
+
+024E021C:
+jmp nodelay
+nop
+
+nodelay:
+cmp [counter],A
+je normal
+inc [counter]
+jmp 024E0222
+
+normal:
+mov [counter],0
+mov [edi+00000870],eax
+jmp 024E0222
+
+[DISABLE]
+024E021C: // 89 87 ? ? ? ? 8B CB 8B ? 6A ? FF 75 ? FF 50 ? C7 87 ? ? ? ? 00 00 00 00
+mov [edi+00000870],eax
+
+Dealloc(nodelay)
+Dealloc(counter)
+Dealloc(normal)
