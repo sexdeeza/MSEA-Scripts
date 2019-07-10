@@ -1,0 +1,26 @@
+[Enable]
+Alloc(Aggro, 128)
+Label(return)
+
+Aggro:
+mov eax,[03711CBC] //Char Base 8B 3D ? ? ? ? 8B CF F3 [opcode]
+lea eax,[eax+04]
+mov [ecx+00000518],eax //Aggro offset E9 ? ? ? ? 8B ? ? ? 00 00 83 ? ? 0F ? ? ? ? ? FF [mov below, Offset+0x08]
+
+push ebp
+mov ebp,esp
+push -01
+jmp return
+
+0287D4B0:
+jmp Aggro
+return:
+
+[DISABLE]
+// 8B EC 6A ? 68 ? ? ? ? 64 A1 00 00 00 00 50 83 EC ? 56 57 A1 ? ? ? ? 33 C5 50 8D 45 ? 64 A3 00 00 00 00 8B F9 89 ? EC 8B ? FF 75 ? FF 90 ? ? ? ? 83 BF ? ? ? ? ? 74 ? 6A ? 8D [Addr above = push]
+0287D4B0:// CVecCtrlMob::WorkUpdateActive: E9 ? ? ? ? 8B ? ? ? 00 00 83 ? ? 0F ? ? ? ? ? FF [FUNCTION START]
+push ebp
+mov ebp,esp
+push -01
+
+dealloc(Aggro)
