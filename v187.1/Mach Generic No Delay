@@ -1,0 +1,9 @@
+//Mach Generic No Delay (Melee/Basic attacks)
+define(MachGND,026301A4)//75 ? 83 BD ? ? FF FF 00 75 ? 8B [4th result]
+[enable]
+MachGND:
+db EB
+
+[disable]
+MachGND:
+db 75
