@@ -1,0 +1,7 @@
+[Enable]
+0260C350:
+db C2 30 00
+
+[Disable]
+0260C350: //E8 ? ? ? ? EB ? 6A 00 6A 01 6A 00 6A 01 [Follow call]
+db 55 8B EC
