@@ -1,0 +1,9 @@
+// TwMS v217.3 CRC Lag可攻擊
+// 不消失無延遲常斷線的極度推薦
+// Auther: 未知
+[ENABLE]
+00C93360: //74 14 8B 06 8B CE 6A 00 6A 00 6A 1E
+db 75
+[DISABLE]
+00C93360:
+db 74
