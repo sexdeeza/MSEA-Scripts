@@ -1,3 +1,4 @@
+// Untested ban rate
 [Enable]
 0260C350:
 db C2 30 00
