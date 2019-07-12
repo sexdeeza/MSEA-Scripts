@@ -1,0 +1,11 @@
+//TwMS 217.3 凱內西斯普功修改
+//Auther:Opeple0627
+//下一個版本再放AOB吧
+//影片在這:https://youtu.be/vwI8OhTFGPs
+[ENABLE]
+0261D4CF:
+push 17D7D613 //一樣 這個地方你想換成什麼技能就換吧 反正我是都測過一遍了 就這個最好玩
+
+[DISABLE]
+0261D4CF: // 68 ? ? ? ? FF 90 ? ? ? ? 8B 03 8B CB FF 50 ? 50 E8 ? ? ? ? 83 C4 ? 85 C0 0F 84
+push 08584009
