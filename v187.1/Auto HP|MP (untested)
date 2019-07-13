@@ -9,8 +9,11 @@ label(MPReturn)
 
 define(HP_Value,#%arg1) //Define HP Trigger Here (Do not remove # tag)
 define(MP_Value,#%arg2) //Define MP Trigger Here (Do not remove # tag)
-define(HealthKey, %arg3) //HP Key
-define(ManaKey, %arg4) //MP Key
+
+define(PAGEUP,01490000)
+define(PAGEDOWN,01510000)
+define(HealthKey, PAGEUP) //HP Key
+define(ManaKey, PAGEDOWN) //MP Key
 
 HP:
 dd HP_Value
@@ -18,8 +21,8 @@ MP:
 dd MP_Value
 
 CheckHP:
-mov [ebx+00000214],esi
-cmp esi,[HP]
+mov [ebx+00000214],edi
+cmp edi,[HP]
 jg HPReturn
 pushad
 mov edx,HealthKey
@@ -29,7 +32,7 @@ jmp HPReturn
 
 CheckMP:
 mov [edi+00000214],ebx
-cmp esi,[MP]
+cmp ebx,[MP]
 jg MPReturn
 pushad
 mov edx,ManaKey
@@ -57,7 +60,7 @@ ret
 
 [disable]
 0231894F: // 89 BB ? ? ? ? 33 FF 8B 86 ? ? ? ? 8B D0 8B 8E ? ? ? ? C1 C2 ? 33 D1 81 F1 ? ? ? ? C1 C9 ? 03 C8 3B
-mov [ebx+00000214],esi
+mov [ebx+00000214],edi
 02319079: // 89 9F ? ? ? ? 50 8D 4F ? E8 ? ? ? ? 8B 75 ? C7 45 ? ? ? ? ? 85 F6 0F 84
 mov [edi+00000214],ebx
 dealloc(HP)
