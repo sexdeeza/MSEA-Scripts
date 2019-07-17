@@ -1,0 +1,16 @@
+//TwMS v216.1 修復後台按鍵 [CRC]
+//就是能解決PostMessage的WM_KEYDOWN消息無法在MapleStory視窗為非Focus狀態時被正確執行的問題
+//Author: Doem 2017-1-15
+[ENABLE]
+0295C011:
+db 90 90 90 90 90 90
+
+0295C023:
+db 90 90 90 90 90 90
+
+[DISABLE]
+0295C011: // 0F 84 ? ? ? ? A1 ? ? ? ? 83 B8 ? ? ? ? 00 0F
+je 0295C13D
+
+0295C023: // je below
+je 0295C13D
